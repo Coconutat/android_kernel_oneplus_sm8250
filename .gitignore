@@ -143,3 +143,12 @@ build.sh
 # Ignore build script
 /horizon_build.sh
 compile_commands.json
+
+# KernelSU
+KernelSU
+
+# Personal
+*.log
+out
+tools/AnyKernel3/
+*.zip
