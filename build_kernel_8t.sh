@@ -21,9 +21,9 @@ start_time=$(date +%Y.%m.%d-%I_%M)
 
 start_time_sum=$(date +%s)
 
-make ARCH=arm64 O=out CC=clang vendor/kona-perf_defconfig
+make ARCH=arm64 O=out CC=clang vendor/kona-perf_suki_defconfig
 # 定义编译线程数
-make ARCH=arm64 O=out CC=clang -j$(nproc --all) 2>&1 | tee kernel_log-${start_time}.txt
+make ARCH=arm64 O=out CC=clang -j$(nproc --all) 2>&1 | tee kernel_log-${start_time}.log
 
 end_time_sum=$(date +%s)
 
@@ -45,9 +45,9 @@ if [ -f out/arch/arm64/boot/Image.gz ]; then
 	cp out/arch/arm64/boot/Image.gz tools/AnyKernel3/Image.gz
 	cp -vf tools/AnyKernel3_sh/anykernel.sh tools/AnyKernel3/
 	cd tools/AnyKernel3
-	zip -r9 OnePlus-8T-Horizon-${end_time}.zip * > /dev/null
+	zip -r9 OnePlus-8T-oss13-${end_time}.zip * > /dev/null
 	cd ../..
-	mv tools/AnyKernel3/OnePlus-8T-Horizon-${end_time}.zip OnePlus-8T-Horizon-${end_time}.zip
+	mv tools/AnyKernel3/OnePlus-8T-oss13-${end_time}.zip OnePlus-8T-oss13-${end_time}.zip
 	rm -rf tools/AnyKernel3/Image.gz
 	echo "***Sucessfully built kernel...***"
 	echo " "
