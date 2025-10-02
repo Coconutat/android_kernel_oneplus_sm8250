@@ -21,7 +21,7 @@ start_time=$(date +%Y.%m.%d-%I_%M)
 
 start_time_sum=$(date +%s)
 
-make ARCH=arm64 O=out CC=clang vendor/kona-perf_suki_defconfig
+make ARCH=arm64 O=out CC=clang kona-perf_suki_no_kprobes_defconfig
 # 定义编译线程数
 make ARCH=arm64 O=out CC=clang -j$(nproc --all) 2>&1 | tee kernel_log-${start_time}.log
 
