@@ -13,6 +13,9 @@ export CROSS_COMPILE_ARM32=arm-linux-gnueabi-
 export ARCH=arm64
 # export DTC_EXT=dtc
 
+# ccache
+export PATH="/usr/lib/ccache:$PATH"
+
 if [ ! -d "out" ]; then
 	mkdir out
 fi
@@ -21,9 +24,9 @@ start_time=$(date +%Y.%m.%d-%I_%M)
 
 start_time_sum=$(date +%s)
 
-make ARCH=arm64 O=out CC=clang kona-perf_suki_no_kprobes_defconfig
+make ARCH=arm64 O=out CC="ccache clang" kona-perf_suki_no_kprobes_defconfig
 # 定义编译线程数
-make ARCH=arm64 O=out CC=clang -j$(nproc --all) 2>&1 | tee kernel_log-${start_time}.log
+make ARCH=arm64 O=out CC="ccache clang" -j$(nproc --all) 2>&1 | tee kernel_log-${start_time}.log
 
 end_time_sum=$(date +%s)
 
